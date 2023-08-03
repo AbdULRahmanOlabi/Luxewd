@@ -871,6 +871,11 @@ section {
   bottom: 20px;
 }
 
+.portfolio .img-fluid {
+  width: 500px !important;
+  height: 500px !important;
+}
+
 /*--------------------------------------------------------------
 # Portfolio Details
 --------------------------------------------------------------*/
@@ -880,6 +885,7 @@ section {
 
 .portfolio-details .portfolio-details-slider img {
   width: 100%;
+  height: 600px;
 }
 
 .portfolio-details .portfolio-details-slider .swiper-pagination {
