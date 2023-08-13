@@ -4,6 +4,8 @@
 body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
+  padding: 0;
+  margin: 0;
 }
 
 a {
@@ -235,6 +237,7 @@ h6 {
 }
 
 .navbar .dropdown ul {
+  border-radius: 5px;
   display: block;
   position: absolute;
   left: 0;
@@ -579,6 +582,7 @@ section {
 }
 
 .why-us .box {
+  border-radius: 5px;
   padding: 50px 30px;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   transition: all ease-in-out 0.3s;
@@ -650,6 +654,7 @@ section {
 # Services
 --------------------------------------------------------------*/
 .services .icon-box {
+  border-radius: 5px;
   text-align: center;
   padding: 80px 20px;
   transition: all ease-in-out 0.3s;
@@ -867,11 +872,13 @@ section {
 }
 
 .portfolio .portfolio-item:hover .portfolio-info {
+  border-radius: 5px;
   opacity: 1;
   bottom: 20px;
 }
 
 .portfolio .img-fluid {
+  border-radius: 5px;
   width: 500px !important;
   height: 500px !important;
 }
@@ -884,6 +891,7 @@ section {
 }
 
 .portfolio-details .portfolio-details-slider img {
+  border-radius: 5px;
   width: 100%;
   height: 600px;
 }
@@ -906,6 +914,7 @@ section {
 }
 
 .portfolio-details .portfolio-info {
+  border-radius: 5px;
   padding: 30px;
   box-shadow: 0px 0 30px rgba(25, 25, 25, 0.08);
 }
@@ -1065,6 +1074,7 @@ section {
 # Team
 --------------------------------------------------------------*/
 .team .member {
+  border-radius: 5px;
   text-align: center;
   margin-bottom: 20px;
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
@@ -1119,6 +1129,7 @@ section {
 # Contact
 --------------------------------------------------------------*/
 .contact .info-box {
+  border-radius: 5px;
   color: #444444;
   text-align: center;
   box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
@@ -1427,4 +1438,51 @@ section {
   #footer .footer-top .footer-info {
     margin: -20px 0 30px 0;
   }
+}
+/*--------------------------------------------------------------
+# Whatsapp
+--------------------------------------------------------------*/
+.whatsapp-btn-container {
+  position: fixed;
+  left: 0px;
+  opacity: 0;
+  bottom: 0;
+  padding: 24px;
+  animation: fade-up 1000ms forwards;
+  animation-delay: 1000ms;
+}
+
+@keyframes fade-up {
+  100% {
+      bottom: 24px;
+      opacity: 1;
+  }
+}
+
+.whatsapp-btn-container .whatsapp-btn {
+  font-size: 48px;
+  color: #25d366;
+  display: inline-block;
+  transition: all 400ms;
+}
+
+.whatsapp-btn-container .whatsapp-btn:hover {
+  transform: scale(1.2);
+}
+
+.whatsapp-btn-container span {
+  position: absolute;
+  top: 0;
+  left: 4px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  color: #075e54;
+  transform: rotateZ(20deg) translateX(10px);
+  opacity: 0;
+  transition: all 400ms;
+}
+
+.whatsapp-btn-container .whatsapp-btn:hover + span {
+  transform: rotateZ(0deg) translateX(0px);
+  opacity: 1;
 }
