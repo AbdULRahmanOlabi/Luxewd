@@ -27,6 +27,20 @@ h6 {
   font-family: "Raleway", sans-serif;
 }
 
+.modal-header {
+  background: #F7941E;
+  color: #fff;
+}
+
+.required:after {
+  content: "*";
+  color: red;
+}
+
+.modal-body {
+  width: 1500px;
+}
+
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
@@ -117,7 +131,7 @@ h6 {
 }
 
 #topbar .contact-info a {
-  line-height: 0;
+  line-height: 1;
   color: rgba(255, 255, 255, 0.6);
   transition: 0.3s;
 }
@@ -880,7 +894,7 @@ section {
 .portfolio .img-fluid {
   border-radius: 5px;
   width: 500px !important;
-  height: 500px !important;
+  height: 400px !important;
 }
 
 /*--------------------------------------------------------------
