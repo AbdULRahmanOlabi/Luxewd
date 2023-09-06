@@ -27,36 +27,6 @@ h6 {
   font-family: "Raleway", sans-serif;
 }
 
-.modal-header {
-  background: #ffc51c;
-  color: #fff;
-}
-
-.required:after {
-  content: "*";
-  color: red;
-}
-
-.modal-body {
-  width: 300px !important;
-}
-
-/* .modal-content {
-  width: 300px !important;
-} */
-
-@media (max-width: 768px) {
-  .modal-content {
-    width: 380px !important;
-  }
-
-  .modal-content video{
-    width: 350px !important;
-    height: 600px !important;
-  }
-  
-}
-
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
@@ -147,7 +117,7 @@ h6 {
 }
 
 #topbar .contact-info a {
-  line-height: 1;
+  line-height: 0;
   color: rgba(255, 255, 255, 0.6);
   transition: 0.3s;
 }
@@ -910,7 +880,7 @@ section {
 .portfolio .img-fluid {
   border-radius: 5px;
   width: 500px !important;
-  height: 400px !important;
+  height: 500px !important;
 }
 
 /*--------------------------------------------------------------
