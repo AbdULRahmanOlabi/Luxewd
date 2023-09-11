@@ -730,6 +730,13 @@ section {
   color: #fff;
 }
 
+@media (max-width: 575px) {
+  .modal-body video{
+    width: 350px !important;
+    height: 500px !important;
+  }
+}
+
 /*--------------------------------------------------------------
 # Cta
 --------------------------------------------------------------*/
