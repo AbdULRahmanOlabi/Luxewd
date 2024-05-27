@@ -6,6 +6,9 @@ body {
   color: #444444;
   padding: 0;
   margin: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 a {
@@ -1540,4 +1543,27 @@ section {
 .whatsapp-btn-container .whatsapp-btn:hover + span {
   transform: rotateZ(0deg) translateX(0px);
   opacity: 1;
+}
+
+/*--------------------------------------------------------------
+# Custom Model
+--------------------------------------------------------------*/
+
+#modelForm .btn-buy {
+  background: #ffc51c;
+  border: none; /* No borders */
+  color: white; /* White text color */
+  padding: 10px 20px; /* Top/bottom and left/right padding */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Cursor appears as pointer */
+  font-size: 16px; /* Font size */
+  font-weight: bold; /* Bold font weight */
+  text-transform: uppercase; /* Uppercase text */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle shadow for 3D effect */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+#modelForm .btn-buy:hover {
+  background: #f6bf19;
+  box-shadow: 0 6px 8px rgba(0,0,0,0.2);
 }
