@@ -110,13 +110,12 @@
 
         <!-- Custom Model Section -->
         <section id="custom-model" class="contact section" style="padding: 25px;">
-
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
                 <span>Custom Model</span>
                 <h2>Custom Model</h2>
-                <p>Please Use The Form Below To Select a Model and Enter Specifications. This will Enable Us To
-                    Calculate and Provide You With Specific Results Tailored To Your Choices</p>
+                <p>Please use the form below to select a model type and style, then enter specifications. This will
+                    enable us to calculate and provide you with specific results tailored to your choices.</p>
             </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -124,13 +123,21 @@
                     <div class="col-lg-12">
                         <form id="modelForm" class="php-email-form" data-aos="fade-up" data-aos-delay="400">
                             <div class="row gy-4">
-                                <div class="col-md-6">
-                                    <select id="modelSelect" class="form-control"
+                                <div class="col-md-3">
+                                    <select id="typeSelect" class="form-control"
                                         onchange="updateBackgroundAndCalculate()">
-                                        <option value="">Select a Model</option>
-                                        <option value="model1">Classic Walk-in</option>
-                                        <option value="model2">Classic-Kitchen</option>
-                                        <option value="model3">Farmhouse Kitchen</option>
+                                        <option value="">Select Type</option>
+                                        <option value="kitchen">Kitchen</option>
+                                        <option value="walk-in-closet">Walk-in Closet</option>
+                                        <option value="vanity">Vanity</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <select id="styleSelect" class="form-control"
+                                        onchange="updateBackgroundAndCalculate()">
+                                        <option value="">Select Style</option>
+                                        <option value="modern">Modern</option>
+                                        <option value="classic">Classic</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3">
@@ -138,7 +145,7 @@
                                         required="">
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="number" id="weight" class="form-control" placeholder="Weight (cm)"
+                                    <input type="number" id="weight" class="form-control" placeholder="Weight (kg)"
                                         required="">
                                 </div>
                                 <div class="col-md-12 text-center">
@@ -154,6 +161,7 @@
                 </div>
             </div>
         </section><!-- Custom Model Section -->
+
 
 
     </main><!-- End #main -->
@@ -238,17 +246,18 @@
 
     <script>
         function updateBackgroundAndCalculate() {
-            var model = document.getElementById("modelSelect").value;
+            var type = document.getElementById("typeSelect").value;
+            var style = document.getElementById("styleSelect").value;
             var height = document.getElementById("height").value;
             var weight = document.getElementById("weight").value;
             var result = document.getElementById("result");
             var sectionTitle = document.querySelector('.section-title');
 
-            if (!model) { // Check if model is selected
-                result.innerHTML = "Please select a model.";
-                document.body.style.backgroundImage = ""; // Reset to default or blank
-                sectionTitle.style.color = ""; // Reset to default
-                result.style.color = ""; // Reset to default
+            if (!type || !style) {
+                result.innerHTML = "Please select both type and style.";
+                document.body.style.backgroundImage = ""; // Reset to default
+                sectionTitle.style.color = ""; // Reset text color
+                result.style.color = ""; // Reset text color
                 return;
             }
 
@@ -256,45 +265,45 @@
             sectionTitle.style.color = "white";
             result.style.color = "white";
 
-            // Calculate result based on the inputs and model selected
+            // Determine the image and calculation based on selected type and style
+            var modelKey = type + '-' + style;
+            var backgroundImageUrl;
             var output;
-            switch (model) {
-                case 'model1':
-                    output = calculateModel1(height, weight);
-                    document.body.style.backgroundImage = "url('assets/img/portfolio/Classic Walk-in-1.jpg')"; // Example background color for Model 1
+
+            switch (modelKey) {
+                case 'kitchen-modern':
+                    backgroundImageUrl = "assets/img/portfolio/Modern-Kitchen.jpg";
+                    output = "Calculation for Modern Kitchen with Height " + height + " cm and Weight " + weight + " kg.";
                     break;
-                case 'model2':
-                    output = calculateModel2(height, weight);
-                    document.body.style.backgroundImage = "url('assets/img/portfolio/Classic-Kitchen.jpg')"; // Example background color for Model 2
+                case 'kitchen-classic':
+                    backgroundImageUrl = "assets/img/portfolio/Classic-Kitchen.jpg";
+                    output = "Calculation for Classic Kitchen with Height " + height + " cm and Weight " + weight + " kg.";
                     break;
-                case 'model3':
-                    output = calculateModel3(height, weight);
-                    document.body.style.backgroundImage = "url('assets/img/portfolio/Farmhouse-Kitchen.jpg')"; // Example background color for Model 3
+                case 'walk-in-closet-modern':
+                    backgroundImageUrl = "assets/img/portfolio/Modern Walk-in.jpg";
+                    output = "Calculation for Modern Walk-in Closet with Height " + height + " cm and Weight " + weight + " kg.";
+                    break;
+                case 'walk-in-closet-classic':
+                    backgroundImageUrl = "assets/img/portfolio/Classic Walk-in.jpg";
+                    output = "Calculation for Classic Walk-in Closet with Height " + height + " cm and Weight " + weight + " kg.";
+                    break;
+                case 'vanity-modern':
+                    backgroundImageUrl = "assets/img/portfolio/Vanity.jpg";
+                    output = "Calculation for Modern Vanity with Height " + height + " cm and Weight " + weight + " kg.";
+                    break;
+                case 'vanity-classic':
+                    backgroundImageUrl = "assets/img/portfolio/Vanity.jpg";
+                    output = "Calculation for Classic Vanity with Height " + height + " cm and Weight " + weight + " kg.";
                     break;
                 default:
-                    output = "Please select a model.";
-                    document.body.style.backgroundColor = "white"; // Default background
+                    backgroundImageUrl = "";
+                    output = "Unexpected model type and style.";
             }
-            result.innerHTML = "Result: " + output;
-        }
 
-        function calculateModel1(height, weight) {
-            // Implement calculation logic specific to Model 1
-            return "Calculation For Classic Walk-in With Height " + height + " cm and Weight " + weight + " cm.";
-        }
-
-        function calculateModel2(height, weight) {
-            // Implement calculation logic specific to Model 2
-            return "Calculation For Classic-Kitchen With Height " + height + " cm and Weight " + weight + " cm.";
-        }
-
-        function calculateModel3(height, weight) {
-            // Implement calculation logic specific to Model 3
-            return "Calculation For Farmhouse-Kitchen With Height " + height + " cm and Weight " + weight + " cm.";
+            document.body.style.backgroundImage = "url('" + backgroundImageUrl + "')";
+            result.innerHTML = output;
         }
     </script>
-
-
 </body>
 
 </html>
