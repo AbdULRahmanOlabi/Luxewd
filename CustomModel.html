@@ -108,61 +108,78 @@
             </div>
         </section><!-- End Breadcrumbs -->
 
-        <!-- Custom Model Section --> 
+        <!-- Custom Model Section -->
         <!-- margin-bottom: 250px; For Big Size of Section -->
-        <section id="custom-model" class="contact section" style="padding: 25px; ">
-            <!-- Section Title -->
+        <section id="custom-model" class="contact section" style="padding: 25px;">
             <div class="container section-title" data-aos="fade-up">
-                <span>Custom Model</span>
                 <h2>Custom Model</h2>
-                <p>Please use the form below to select a model type and style, then enter specifications. this will
-                    enable us to calculate and provide you with specific results tailored to your choices</p>
-            </div><!-- End Section Title -->
+                <p>Please use the form below to select a model type and style, then enter specifications. This will
+                    enable us to calculate and provide you with specific results tailored to your choices.</p>
+            </div>
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
-                <div class="row gy-4 mt-1">
-                    <div class="col-lg-12">
-                        <form id="modelForm" class="php-email-form" data-aos="fade-up" data-aos-delay="400">
-                            <div class="row gy-4">
-                                <div class="col-md-3">
-                                    <select id="typeSelect" class="form-control"
-                                        onchange="updateBackgroundAndCalculate()">
-                                        <option value="">Select Type</option>
-                                        <option value="kitchen">Kitchen</option>
-                                        <option value="walk-in-closet">Walk-in Closet</option>
-                                        <option value="vanity">Vanity</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <select id="styleSelect" class="form-control"
-                                        onchange="updateBackgroundAndCalculate()">
-                                        <option value="">Select Style</option>
-                                        <option value="modern">Modern</option>
-                                        <option value="classic">Classic</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <input type="number" id="height" class="form-control" placeholder="Height (cm)"
-                                        required="">
-                                </div>
-                                <div class="col-md-3">
-                                    <input type="number" id="weight" class="form-control" placeholder="Weight (cm)"
-                                        required="">
-                                </div>
-                                <div class="col-md-12 text-center">
-                                    <button type="button" class="btn-buy"
-                                        onclick="updateBackgroundAndCalculate()">Calculate</button>
-                                </div>
-                                <div class="col-md-12 text-center">
-                                    <div id="result"></div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section><!-- Custom Model Section -->
+                <form id="modelForm" class="php-email-form" data-aos="fade-up" data-aos-delay="400">
+                    <div class="row gy-4">
+                        <div class="col-md-4">
+                            <label for="typeSelect">Type</label>
+                            <select id="typeSelect" class="form-control" onchange="updateBackgroundAndCalculate()">
+                                <option value="">Select Type</option>
+                                <option value="kitchen">Kitchen</option>
+                                <option value="wardrobe">Wardrobe</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="styleSelect">Style</label>
+                            <select id="styleSelect" class="form-control" onchange="updateBackgroundAndCalculate()">
+                                <option value="">Select Style</option>
+                                <option value="modern">Modern</option>
+                                <option value="classic">Classic</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="countertop">Counter-Top</label>
+                            <select id="countertop" class="form-control">
+                                <option value="">Select Counter-Top</option>
+                                <option value="corian">Corian</option>
+                                <option value="quarts">Quartz</option>
+                                <option value="marble">Marble</option>
+                            </select>
+                        </div>
 
+                        <div class="col-md-4">
+                            <label for="segment1">Segment 1 Length (cm)</label>
+                            <input type="number" id="segment1" class="form-control" placeholder="Segment 1 Length"
+                                required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="segment2">Segment 2 Length (cm)</label>
+                            <input type="number" id="segment2" class="form-control" placeholder="Segment 2 Length"
+                                required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="segment3">Segment 3 Length (cm)</label>
+                            <input type="number" id="segment3" class="form-control" placeholder="Segment 3 Length"
+                                required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="islandLength">Island Length (cm)</label>
+                            <input type="number" id="islandLength" class="form-control" placeholder="Island Length">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="islandWidth">Island Width (cm)</label>
+                            <input type="number" id="islandWidth" class="form-control" placeholder="Island Width">
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <button type="button" class="btn-buy"
+                                onclick="updateBackgroundAndCalculate()">Calculate</button>
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <div id="result" class="result-display"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
 
 
     </main><!-- End #main -->
@@ -246,65 +263,74 @@
     <script src="assets/js/main.js"></script>
 
     <script>
+        var priceMap = {
+            "kitchen-classic": 2000,
+            "kitchen-modern": 950,
+            "wardrobe-classic": 1200,
+            "wardrobe-modern": 950
+        };
+
         function updateBackgroundAndCalculate() {
             var type = document.getElementById("typeSelect").value;
             var style = document.getElementById("styleSelect").value;
-            var height = document.getElementById("height").value;
-            var weight = document.getElementById("weight").value;
-            var result = document.getElementById("result");
-            var sectionTitle = document.querySelector('.section-title');
+            var seg1 = parseFloat(document.getElementById("segment1").value) || 0;
+            var seg2 = parseFloat(document.getElementById("segment2").value) || 0;
+            var seg3 = parseFloat(document.getElementById("segment3").value) || 0;
+            var islandLength = parseFloat(document.getElementById("islandLength").value) || 0;
+            var islandWidth = parseFloat(document.getElementById("islandWidth").value) || 0;
+            var countertopType = document.getElementById("countertop").value;
 
-            if (!type || !style) {
-                result.innerHTML = "Please select both type and style.";
-                document.body.style.backgroundImage = ""; // Reset to default
-                sectionTitle.style.color = ""; // Reset text color
-                result.style.color = ""; // Reset text color
-                return;
+            var modelKey = type + '-' + style.toLowerCase();
+            var unitPrice = priceMap[modelKey] || 0;
+
+            var segTotal = seg1 + seg2 + seg3;
+            var islandSize = islandLength + islandWidth;
+            var islandArea = islandLength * islandWidth;
+
+            // Base cost calculation
+            var baseCost = ((segTotal + islandSize * 2) / 100) * unitPrice;
+
+            // Material cost factor
+            var materialFactor = ((segTotal * 60 / 10000) + (islandArea / 10000));
+
+            // Calculate costs based on material type
+            var materialCostCorian = materialFactor * 950;
+            var materialCostQuartz = materialFactor * 700;
+            var materialCostMarble = materialFactor * 450;
+
+            // Calculate total material cost based on the selection
+            var totalMaterialCost = 0;
+            if (countertopType === 'corian') {
+                totalMaterialCost += materialCostCorian;
+            } else if (countertopType === 'quarts') {
+                totalMaterialCost += materialCostQuartz;
+            } else if (countertopType === 'marble') {
+                totalMaterialCost += materialCostMarble;
             }
 
-            // Set text colors to white when a model is selected
-            sectionTitle.style.color = "white";
-            result.style.color = "white";
-
-            // Determine the image and calculation based on selected type and style
-            var modelKey = type + '-' + style;
-            var backgroundImageUrl;
-            var output;
-
-            switch (modelKey) {
-                case 'kitchen-modern':
-                    backgroundImageUrl = "assets/img/portfolio/Modern-Kitchen.jpg";
-                    output = "Calculation for Modern Kitchen with Height " + height + " cm and Weight " + weight + " cm.";
-                    break;
-                case 'kitchen-classic':
-                    backgroundImageUrl = "assets/img/portfolio/Classic-Kitchen.jpg";
-                    output = "Calculation for Classic Kitchen with Height " + height + " cm and Weight " + weight + " cm.";
-                    break;
-                case 'walk-in-closet-modern':
-                    backgroundImageUrl = "assets/img/portfolio/Modern Walk-in.jpg";
-                    output = "Calculation for Modern Walk-in Closet with Height " + height + " cm and Weight " + weight + " cm.";
-                    break;
-                case 'walk-in-closet-classic':
-                    backgroundImageUrl = "assets/img/portfolio/Classic Walk-in.jpg";
-                    output = "Calculation for Classic Walk-in Closet with Height " + height + " cm and Weight " + weight + " cm.";
-                    break;
-                case 'vanity-modern':
-                    backgroundImageUrl = "assets/img/portfolio/Vanity.jpg";
-                    output = "Calculation for Modern Vanity with Height " + height + " cm and Weight " + weight + " cm.";
-                    break;
-                case 'vanity-classic':
-                    backgroundImageUrl = "assets/img/portfolio/Vanity.jpg";
-                    output = "Calculation for Classic Vanity with Height " + height + " cm and Weight " + weight + " cm.";
-                    break;
-                default:
-                    backgroundImageUrl = "";
-                    output = "Unexpected model type and style.";
-            }
-
-            document.body.style.backgroundImage = "url('" + backgroundImageUrl + "')";
-            result.innerHTML = output;
+            // Total cost calculation
+            var totalCost = baseCost + totalMaterialCost;
+            document.getElementById("result").innerHTML = "Total cost: " + totalCost.toFixed(2) + " AED";
         }
     </script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var selectors = ['typeSelect', 'styleSelect', 'countertop'];
+            selectors.forEach(function (id) {
+                var selectElement = document.getElementById(id);
+                selectElement.addEventListener('change', function () {
+                    var resultDisplay = document.getElementById('result');
+                    resultDisplay.style.display = 'block'; // Show result display area
+                    updateBackgroundAndCalculate(); // Update calculations and display results
+                });
+            });
+        });
+
+    </script>
+
+
 </body>
 
 </html>

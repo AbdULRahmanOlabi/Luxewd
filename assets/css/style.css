@@ -209,7 +209,7 @@ h6 {
   position: relative;
 }
 
-.navbar>ul>li {
+.navbar > ul > li {
   margin-left: 5px;
 }
 
@@ -235,7 +235,7 @@ h6 {
 .navbar a:hover,
 .navbar .active,
 .navbar .active:focus,
-.navbar li:hover>a {
+.navbar li:hover > a {
   background: #ffc51c;
 }
 
@@ -270,11 +270,11 @@ h6 {
 
 .navbar .dropdown ul a:hover,
 .navbar .dropdown ul .active:hover,
-.navbar .dropdown ul li:hover>a {
+.navbar .dropdown ul li:hover > a {
   color: #fff;
 }
 
-.navbar .dropdown:hover>ul {
+.navbar .dropdown:hover > ul {
   opacity: 1;
   top: 100%;
   visibility: visible;
@@ -287,7 +287,7 @@ h6 {
   visibility: hidden;
 }
 
-.navbar .dropdown .dropdown:hover>ul {
+.navbar .dropdown .dropdown:hover > ul {
   opacity: 1;
   top: 0;
   left: 100%;
@@ -299,7 +299,7 @@ h6 {
     left: -90%;
   }
 
-  .navbar .dropdown .dropdown:hover>ul {
+  .navbar .dropdown .dropdown:hover > ul {
     left: -100%;
   }
 }
@@ -370,7 +370,7 @@ h6 {
 
 .navbar-mobile a:hover,
 .navbar-mobile .active,
-.navbar-mobile li:hover>a {
+.navbar-mobile li:hover > a {
   color: #ffc51c;
   background: none;
 }
@@ -406,11 +406,11 @@ h6 {
 
 .navbar-mobile .dropdown ul a:hover,
 .navbar-mobile .dropdown ul .active:hover,
-.navbar-mobile .dropdown ul li:hover>a {
+.navbar-mobile .dropdown ul li:hover > a {
   color: #ffc51c;
 }
 
-.navbar-mobile .dropdown>.dropdown-active {
+.navbar-mobile .dropdown > .dropdown-active {
   display: block;
 }
 
@@ -734,7 +734,7 @@ section {
 }
 
 @media (max-width: 575px) {
-  .modal-body video{
+  .modal-body video {
     width: 350px !important;
     height: 500px !important;
   }
@@ -744,7 +744,8 @@ section {
 # Cta
 --------------------------------------------------------------*/
 .cta {
-  background: linear-gradient(rgba(2, 2, 2, 0.5), rgba(0, 0, 0, 0.5)), url("../img/cta-bg.jpg") fixed center center;
+  background: linear-gradient(rgba(2, 2, 2, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../img/cta-bg.jpg") fixed center center;
   background-size: cover;
   padding: 120px 0;
 }
@@ -911,7 +912,10 @@ section {
   position: relative;
 }
 
-.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
+.portfolio-details
+  .portfolio-details-slider
+  .swiper-pagination
+  .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
   background-color: #fff;
@@ -919,7 +923,10 @@ section {
   border: 1px solid #ffc51c;
 }
 
-.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
+.portfolio-details
+  .portfolio-details-slider
+  .swiper-pagination
+  .swiper-pagination-bullet-active {
   background-color: #ffc51c;
 }
 
@@ -943,7 +950,7 @@ section {
   font-size: 15px;
 }
 
-.portfolio-details .portfolio-info ul li+li {
+.portfolio-details .portfolio-info ul li + li {
   margin-top: 10px;
 }
 
@@ -1093,36 +1100,36 @@ section {
   align-items: center;
 }
 
-.box .btn-buy, .box .btn-more {
+.box .btn-buy,
+.box .btn-more {
   padding: 10px 20px; /* Adds padding inside the buttons */
   text-decoration: none; /* Removes underline from links */
   color: white; /* Sets text color to white */
-  background-color: #007BFF; /* Example: blue background */
+  background-color: #007bff; /* Example: blue background */
   border-radius: 5px; /* Rounds the corners of the button */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Adds a subtle shadow */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
 }
 
 .box .btn-more {
   background-color: #28a745; /* Example: green background for 'Learn More' */
 }
 
-
 @media (max-width: 768px) {
   .box {
     flex-direction: column; /* Stack elements vertically on small screens */
   }
-  
+
   .btn-wrap {
     flex-direction: column;
     align-items: stretch; /* Make buttons stretch to full width */
   }
 
-  .box .btn-buy, .box .btn-more {
+  .box .btn-buy,
+  .box .btn-more {
     width: 100%; /* Full width buttons on smaller screens */
     margin-bottom: 10px; /* Adds space between stacked buttons */
   }
 }
-
 
 /*--------------------------------------------------------------
 # Team
@@ -1226,7 +1233,7 @@ section {
   font-weight: 600;
 }
 
-.contact .php-email-form .error-message br+br {
+.contact .php-email-form .error-message br + br {
   margin-top: 25px;
 }
 
@@ -1281,8 +1288,7 @@ section {
   border-color: #ffc51c;
 }
 
-
-.contact .php-email-form button[type=submit] {
+.contact .php-email-form button[type="submit"] {
   background: #ffc51c;
   border: 0;
   padding: 10px 24px;
@@ -1290,7 +1296,7 @@ section {
   transition: 0.4s;
 }
 
-.contact .php-email-form button[type=submit]:hover {
+.contact .php-email-form button[type="submit"]:hover {
   background: #ffc51c;
 }
 
@@ -1326,11 +1332,11 @@ section {
   font-size: 14px;
 }
 
-.breadcrumbs ol li+li {
+.breadcrumbs ol li + li {
   padding-left: 10px;
 }
 
-.breadcrumbs ol li+li::before {
+.breadcrumbs ol li + li::before {
   display: inline-block;
   padding-right: 10px;
   color: #333333;
@@ -1450,13 +1456,13 @@ section {
   border-radius: 4;
 }
 
-#footer .footer-top .footer-newsletter form input[type=email] {
+#footer .footer-top .footer-newsletter form input[type="email"] {
   border: 0;
   padding: 4px;
   width: calc(100% - 110px);
 }
 
-#footer .footer-top .footer-newsletter form input[type=submit] {
+#footer .footer-top .footer-newsletter form input[type="submit"] {
   position: absolute;
   top: 0;
   right: 0;
@@ -1471,7 +1477,7 @@ section {
   border-radius: 4;
 }
 
-#footer .footer-top .footer-newsletter form input[type=submit]:hover {
+#footer .footer-top .footer-newsletter form input[type="submit"]:hover {
   background: #ffc51c;
 }
 
@@ -1512,8 +1518,8 @@ section {
 
 @keyframes fade-up {
   100% {
-      bottom: 24px;
-      opacity: 1;
+    bottom: 24px;
+    opacity: 1;
   }
 }
 
@@ -1559,11 +1565,41 @@ section {
   font-size: 16px; /* Font size */
   font-weight: bold; /* Bold font weight */
   text-transform: uppercase; /* Uppercase text */
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle shadow for 3D effect */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for 3D effect */
   transition: all 0.3s ease; /* Smooth transition for hover effects */
 }
 
 #modelForm .btn-buy:hover {
   background: #f6bf19;
-  box-shadow: 0 6px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.custom-model-section .form-group label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+.result-display {
+  display: none; /* Hide by default */
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+}
+
+.custom-model-section .form-control {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid #ffc51c; /* Custom color for borders */
+  border-radius: 0.25rem;
+  background-color: #fff;
+  color: #495057;
 }
