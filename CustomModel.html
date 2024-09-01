@@ -122,7 +122,8 @@
                     <div class="row gy-4">
                         <div class="col-md-4">
                             <label for="typeSelect">Type</label>
-                            <select id="typeSelect" class="form-control" onchange="updateBackgroundAndCalculate()">
+                            <select id="typeSelect" class="form-control" onchange="updateBackgroundAndCalculate()"
+                                required>
                                 <option value="">Select Type</option>
                                 <option value="kitchen">Kitchen</option>
                                 <option value="wardrobe">Wardrobe</option>
@@ -130,7 +131,8 @@
                         </div>
                         <div class="col-md-4">
                             <label for="styleSelect">Style</label>
-                            <select id="styleSelect" class="form-control" onchange="updateBackgroundAndCalculate()">
+                            <select id="styleSelect" class="form-control" onchange="updateBackgroundAndCalculate()"
+                                required>
                                 <option value="">Select Style</option>
                                 <option value="modern">Modern</option>
                                 <option value="classic">Classic</option>
@@ -138,7 +140,7 @@
                         </div>
                         <div class="col-md-4">
                             <label for="countertop">Counter-Top</label>
-                            <select id="countertop" class="form-control">
+                            <select id="countertop" class="form-control" required>
                                 <option value="">Select Counter-Top</option>
                                 <option value="corian">Corian</option>
                                 <option value="quarts">Quartz</option>
@@ -163,11 +165,13 @@
                         </div>
                         <div class="col-md-6">
                             <label for="islandLength">Island Length (cm)</label>
-                            <input type="number" id="islandLength" class="form-control" placeholder="Island Length">
+                            <input type="number" id="islandLength" class="form-control" placeholder="Island Length"
+                                required>
                         </div>
                         <div class="col-md-6">
                             <label for="islandWidth">Island Width (cm)</label>
-                            <input type="number" id="islandWidth" class="form-control" placeholder="Island Width">
+                            <input type="number" id="islandWidth" class="form-control" placeholder="Island Width"
+                                required>
                         </div>
                         <div class="col-md-12 text-center">
                             <button type="button" class="btn-buy"
@@ -263,6 +267,11 @@
     <script src="assets/js/main.js"></script>
 
     <script>
+        function isFormValid() {
+            var form = document.getElementById('modelForm');
+            return form.checkValidity();
+        }
+
         var priceMap = {
             "kitchen-classic": 2000,
             "kitchen-modern": 950,
@@ -271,6 +280,11 @@
         };
 
         function updateBackgroundAndCalculate() {
+            if (!isFormValid()) {
+                document.getElementById("result").innerHTML = "Please fill all required fields before calculating.";
+                document.getElementById("result").style.color = "red";
+                return;
+            }
             var type = document.getElementById("typeSelect").value;
             var style = document.getElementById("styleSelect").value;
             var seg1 = parseFloat(document.getElementById("segment1").value) || 0;
@@ -310,7 +324,7 @@
 
             // Total cost calculation
             var totalCost = baseCost + totalMaterialCost;
-            document.getElementById("result").innerHTML = "Total cost: " + totalCost.toFixed(2) + " AED";
+            document.getElementById("result").innerHTML = "Approximate Cost: " + totalCost.toFixed(2) + " AED";
         }
     </script>
 
@@ -322,8 +336,8 @@
                 var selectElement = document.getElementById(id);
                 selectElement.addEventListener('change', function () {
                     var resultDisplay = document.getElementById('result');
-                    resultDisplay.style.display = 'block'; // Show result display area
-                    updateBackgroundAndCalculate(); // Update calculations and display results
+                    resultDisplay.style.display = 'block';
+                    updateBackgroundAndCalculate();
                 });
             });
         });
