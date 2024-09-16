@@ -280,13 +280,34 @@
         };
 
         function updateBackgroundAndCalculate() {
+            var type = document.getElementById("typeSelect").value;
+            var style = document.getElementById("styleSelect").value;
+
+            // Background change based on type and style selection
+            if (type && style) {
+                var bgImageUrl;
+                if (type === "kitchen" && style === "modern") {
+                    bgImageUrl = "url('assets/img/portfolio/Modern-Kitchen.jpg')"; // Replace with the path to your modern kitchen image
+                } else if (type === "kitchen" && style === "classic") {
+                    bgImageUrl = "url('assets/img/portfolio/Classic-Kitchen.jpg')"; // Replace with the path to your classic kitchen image
+                } else if (type === "wardrobe" && style === "modern") {
+                    bgImageUrl = "url('assets/img/portfolio/Modern Walk-in.jpg')"; // Replace with the path to your modern wardrobe image
+                } else if (type === "wardrobe" && style === "classic") {
+                    bgImageUrl = "url('assets/img/portfolio/Classic Walk-in.jpg')"; // Replace with the path to your classic wardrobe image
+                }
+                document.body.style.backgroundImage = bgImageUrl;
+                document.body.style.backgroundSize = "cover"; // Ensure the image covers the entire background
+                document.body.style.backgroundRepeat = "no-repeat"; // Prevent the image from repeating
+            }
+
+
+            // Ensure all fields are filled before calculating
             if (!isFormValid()) {
                 document.getElementById("result").innerHTML = "Please fill all required fields before calculating.";
                 document.getElementById("result").style.color = "red";
                 return;
             }
-            var type = document.getElementById("typeSelect").value;
-            var style = document.getElementById("styleSelect").value;
+
             var seg1 = parseFloat(document.getElementById("segment1").value) || 0;
             var seg2 = parseFloat(document.getElementById("segment2").value) || 0;
             var seg3 = parseFloat(document.getElementById("segment3").value) || 0;
@@ -325,7 +346,9 @@
             // Total cost calculation
             var totalCost = baseCost + totalMaterialCost;
             document.getElementById("result").innerHTML = "Approximate Cost: " + totalCost.toFixed(2) + " AED";
+            document.getElementById("result").style.color = "black";
         }
+
     </script>
 
 
