@@ -118,48 +118,72 @@
             </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100" style="direction: rtl;">
-                <div class="row gy-4 mt-1">
-                    <div class="col-lg-12">
-                        <form id="modelForm" class="php-email-form" data-aos="fade-up" data-aos-delay="400">
-                            <div class="row gy-4">
-                                <div class="col-md-3">
-                                    <select id="typeSelect" class="form-control"
-                                        onchange="updateBackgroundAndCalculate()">
-                                        <option value="">اختر نوع</option>
-                                        <option value="kitchen">المطابخ</option>
-                                        <option value="walk-in-closet">غرف تبديل الملابس</option>
-                                        <option value="vanity">الخزن</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <select id="styleSelect" class="form-control"
-                                        onchange="updateBackgroundAndCalculate()">
-                                        <option value="">اختر تصميم</option>
-                                        <option value="modern">الحديثة</option>
-                                        <option value="classic">الكلاسيكية</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <input type="number" id="height" class="form-control" placeholder="الطول (cm)"
-                                        required="">
-                                </div>
-                                <div class="col-md-3">
-                                    <input type="number" id="weight" class="form-control" placeholder="العرض (cm)"
-                                        required="">
-                                </div>
-                                <div class="col-md-12 text-center">
-                                    <button type="button" class="btn-buy"
-                                        onclick="updateBackgroundAndCalculate()">احسب</button>
-                                </div>
-                                <div class="col-md-12 text-center">
-                                    <div id="result"></div>
-                                </div>
-                            </div>
-                        </form>
+                <form id="modelForm" class="php-email-form" data-aos="fade-up" data-aos-delay="400">
+                    <div class="row gy-4">
+                        <div class="col-md-4">
+                            <label for="typeSelect">النوع</label>
+                            <select id="typeSelect" class="form-control" onchange="updateBackgroundAndCalculate()"
+                                required>
+                                <option value="">اختر النوع</option>
+                                <option value="kitchen">مطبخ</option>
+                                <option value="wardrobe">خزانة ملابس</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="styleSelect">النمط</label>
+                            <select id="styleSelect" class="form-control" onchange="updateBackgroundAndCalculate()"
+                                required>
+                                <option value="">اختر النمط</option>
+                                <option value="modern">عصري</option>
+                                <option value="classic">كلاسيكي</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="countertop">السطح</label>
+                            <select id="countertop" class="form-control" required>
+                                <option value="">اختر السطح</option>
+                                <option value="corian">كورين</option>
+                                <option value="quarts">كوارتز</option>
+                                <option value="marble">رخام</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="segment1">طول القطاع 1 (سم)</label>
+                            <input type="number" id="segment1" class="form-control" placeholder="طول القطاع 1 (سم)"
+                                required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="segment2">طول القطاع 2 (سم)</label>
+                            <input type="number" id="segment2" class="form-control" placeholder="طول القطاع 2 (سم)"
+                                required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="segment3">طول القطاع 3 (سم)</label>
+                            <input type="number" id="segment3" class="form-control" placeholder="طول القطاع 3 (سم)"
+                                required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="islandLength">طول الجزيرة (سم)</label>
+                            <input type="number" id="islandLength" class="form-control" placeholder="طول الجزيرة (سم)"
+                                required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="islandWidth">عرض الجزيرة (سم)</label>
+                            <input type="number" id="islandWidth" class="form-control" placeholder="عرض الجزيرة (سم)"
+                                required>
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <button type="button" class="btn-buy"
+                                onclick="updateBackgroundAndCalculate()">احسب السعر</button>
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <div id="result" class="result-display"></div>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
-        </section><!-- Custom Model Section -->
+        </section>
 
     </main><!-- End #main -->
 
@@ -248,64 +272,104 @@
     <script src="assets/js/main.js"></script>
 
     <script>
+        function isFormValid() {
+            var form = document.getElementById('modelForm');
+            return form.checkValidity();
+        }
+
+        var priceMap = {
+            "kitchen-classic": 2000,
+            "kitchen-modern": 950,
+            "wardrobe-classic": 1200,
+            "wardrobe-modern": 950
+        };
+
         function updateBackgroundAndCalculate() {
             var type = document.getElementById("typeSelect").value;
             var style = document.getElementById("styleSelect").value;
-            var height = document.getElementById("height").value;
-            var weight = document.getElementById("weight").value;
-            var result = document.getElementById("result");
-            var sectionTitle = document.querySelector('.section-title');
 
-            if (!type || !style) {
-                result.innerHTML = "الرجاء تحديد النوع والتصميم معا";
-                document.body.style.backgroundImage = ""; // Reset to default
-                sectionTitle.style.color = ""; // Reset text color
-                result.style.color = ""; // Reset text color
+            // Background change based on type and style selection
+            if (type && style) {
+                var bgImageUrl;
+                if (type === "kitchen" && style === "modern") {
+                    bgImageUrl = "url('assets/img/portfolio/Modern-Kitchen.jpg')"; 
+                } else if (type === "kitchen" && style === "classic") {
+                    bgImageUrl = "url('assets/img/portfolio/Classic-Kitchen.jpg')"; 
+                } else if (type === "wardrobe" && style === "modern") {
+                    bgImageUrl = "url('assets/img/portfolio/Modern Walk-in.jpg')";
+                } else if (type === "wardrobe" && style === "classic") {
+                    bgImageUrl = "url('assets/img/portfolio/Classic Walk-in.jpg')"; 
+                }
+                document.body.style.backgroundImage = bgImageUrl;
+                document.body.style.backgroundSize = "cover"; 
+                document.body.style.backgroundRepeat = "no-repeat"; 
+            }
+
+
+            // Ensure all fields are filled before calculating
+            if (!isFormValid()) {
+                document.getElementById("result").innerHTML = "يرجى ملء جميع الحقول المطلوبة قبل الحساب.";
+                document.getElementById("result").style.color = "red";
                 return;
             }
 
-            // Set text colors to white when a model is selected
-            sectionTitle.style.color = "white";
-            result.style.color = "white";
+            var seg1 = parseFloat(document.getElementById("segment1").value) || 0;
+            var seg2 = parseFloat(document.getElementById("segment2").value) || 0;
+            var seg3 = parseFloat(document.getElementById("segment3").value) || 0;
+            var islandLength = parseFloat(document.getElementById("islandLength").value) || 0;
+            var islandWidth = parseFloat(document.getElementById("islandWidth").value) || 0;
+            var countertopType = document.getElementById("countertop").value;
 
-            // Determine the image and calculation based on selected type and style
-            var modelKey = type + '-' + style;
-            var backgroundImageUrl;
-            var output;
+            var modelKey = type + '-' + style.toLowerCase();
+            var unitPrice = priceMap[modelKey] || 0;
 
-            switch (modelKey) {
-                case 'kitchen-modern':
-                    backgroundImageUrl = "assets/img/portfolio/Modern-Kitchen.jpg";
-                    output = "حساب المطبخ الحديث مع الارتفاع" + height + " cm والعرض " + weight + " cm";
-                    break;
-                case 'kitchen-classic':
-                    backgroundImageUrl = "assets/img/portfolio/Classic-Kitchen.jpg";
-                    output = "حساب المطبخ الكلاسيكي مع الارتفاع " + height + " cm والعرض " + weight + " cm";
-                    break;
-                case 'walk-in-closet-modern':
-                    backgroundImageUrl = "assets/img/portfolio/Modern Walk-in.jpg";
-                    output = "حساب غرف تبديل الملابس الحديثة مع الارتفاع " + height + " cm والعرض " + weight + " cm";
-                    break;
-                case 'walk-in-closet-classic':
-                    backgroundImageUrl = "assets/img/portfolio/Classic Walk-in.jpg";
-                    output = "حساب غرف تبديل الملابس الكلاسيكي مع الارتفاع " + height + " cm والعرض " + weight + " cm";
-                    break;
-                case 'vanity-modern':
-                    backgroundImageUrl = "assets/img/portfolio/Vanity.jpg";
-                    output = "حساب الخزن الحديث مع الارتفاع " + height + " cm والعرض " + weight + " cm";
-                    break;
-                case 'vanity-classic':
-                    backgroundImageUrl = "assets/img/portfolio/Vanity.jpg";
-                    output = "حساب الخزن الكلاسيكي مع الارتفاع " + height + " cm والعرض " + weight + " cm";
-                    break;
-                default:
-                    backgroundImageUrl = "";
-                    output = "نوع وتصميم غير متوقعين للنموذج";
+            var segTotal = seg1 + seg2 + seg3;
+            var islandSize = islandLength + islandWidth;
+            var islandArea = islandLength * islandWidth;
+
+            // Base cost calculation
+            var baseCost = ((segTotal + islandSize * 2) / 100) * unitPrice;
+
+            // Material cost factor
+            var materialFactor = ((segTotal * 60 / 10000) + (islandArea / 10000));
+
+            // Calculate costs based on material type
+            var materialCostCorian = materialFactor * 950;
+            var materialCostQuartz = materialFactor * 700;
+            var materialCostMarble = materialFactor * 450;
+
+            // Calculate total material cost based on the selection
+            var totalMaterialCost = 0;
+            if (countertopType === 'corian') {
+                totalMaterialCost += materialCostCorian;
+            } else if (countertopType === 'quarts') {
+                totalMaterialCost += materialCostQuartz;
+            } else if (countertopType === 'marble') {
+                totalMaterialCost += materialCostMarble;
             }
 
-            document.body.style.backgroundImage = "url('" + backgroundImageUrl + "')";
-            result.innerHTML = output;
+            // Total cost calculation
+            var totalCost = baseCost + totalMaterialCost;
+            document.getElementById("result").innerHTML = "Approximate Cost: " + totalCost.toFixed(2) + " AED";
+            document.getElementById("result").style.color = "black";
         }
+
+    </script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var selectors = ['typeSelect', 'styleSelect', 'countertop'];
+            selectors.forEach(function (id) {
+                var selectElement = document.getElementById(id);
+                selectElement.addEventListener('change', function () {
+                    var resultDisplay = document.getElementById('result');
+                    resultDisplay.style.display = 'block';
+                    updateBackgroundAndCalculate();
+                });
+            });
+        });
+
     </script>
 
 </body>
