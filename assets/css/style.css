@@ -1087,47 +1087,74 @@ section {
   color: #ffc51c;
 }
 
+.price-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.price-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-grow: 1;
+  margin-right: 20px;
+}
+
+.price-item:last-child {
+  margin-right: 0;
+}
+
+.price-label {
+  font-weight: bold;
+  color: #000;
+}
+
+h4 {
+  margin: 0;
+}
+
 .box img.product-image {
-  width: 350px; /* Make image take full width of the box */
+  width: 350px;
   height: 250px;
-  border-radius: 8px; /* Optional: rounds the corners of the image */
-  margin-bottom: 15px; /* Adds space between the image and the text below it */
+  border-radius: 8px;
+  margin-bottom: 15px;
 }
 
 .box .btn-wrap {
   display: flex;
-  justify-content: space-between; /* Separates the buttons */
+  justify-content: space-between;
   align-items: center;
 }
 
 .box .btn-buy,
 .box .btn-more {
-  padding: 10px 20px; /* Adds padding inside the buttons */
-  text-decoration: none; /* Removes underline from links */
-  color: white; /* Sets text color to white */
-  background-color: #007bff; /* Example: blue background */
-  border-radius: 5px; /* Rounds the corners of the button */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+  padding: 10px 20px;
+  text-decoration: none;
+  color: white;
+  background-color: #007bff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .box .btn-more {
-  background-color: #28a745; /* Example: green background for 'Learn More' */
+  background-color: #28a745;
 }
 
 @media (max-width: 768px) {
   .box {
-    flex-direction: column; /* Stack elements vertically on small screens */
+    flex-direction: column;
   }
 
   .btn-wrap {
     flex-direction: column;
-    align-items: stretch; /* Make buttons stretch to full width */
+    align-items: stretch;
   }
 
   .box .btn-buy,
   .box .btn-more {
-    width: 100%; /* Full width buttons on smaller screens */
-    margin-bottom: 10px; /* Adds space between stacked buttons */
+    width: 100%;
+    margin-bottom: 10px;
   }
 }
 
