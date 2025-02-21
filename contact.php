@@ -1,9 +1,12 @@
 <?php
 
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+require 'PHPMailer/src/Exception.php';
 
 $mail = new PHPMailer(true);
 
@@ -13,7 +16,7 @@ try {
     $mail->Host = 'smtp.privateemail.com';
     $mail->SMTPAuth = true;
     $mail->Username = 'info@luxewd.net';
-    $mail->Password = 'Luxewddubai@123';
+    $mail->Password = 'Luxewd@12345';
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
 
