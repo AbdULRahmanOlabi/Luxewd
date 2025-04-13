@@ -13,12 +13,12 @@ $mail = new PHPMailer(true);
 try {
     // SMTP Configuration
     $mail->isSMTP();
-    $mail->Host = 'smtp.privateemail.com';
+    $mail->Host = 'luxewd.net';
     $mail->SMTPAuth = true;
     $mail->Username = 'info@luxewd.net';
     $mail->Password = 'Luxewd@12345';
-    $mail->SMTPSecure = 'tls';
-    $mail->Port = 587;
+    $mail->SMTPSecure = 'ssl';
+    $mail->Port = 465;
 
     // Get Form Data
     $name = $_POST['name'];
@@ -77,7 +77,13 @@ try {
 
     // Send Email
     $mail->send();
-    echo "<script>alert('Thanks for your Proposal! We will contact you soon.');</script>";
+    echo "<script>
+    alert('Thanks for your Proposal! We will contact you soon.');
+    window.location.href = 'index.html'; 
+    </script>";
 } catch (Exception $e) {
-    echo "<script>alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}');</script>";
+    echo "<script>
+    alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}');
+    window.location.href = 'index.html'; 
+    </script>";
 }

@@ -13,12 +13,12 @@ $mail = new PHPMailer(true);
 try {
     // إعدادات SMTP
     $mail->isSMTP();
-    $mail->Host = 'mail.luxewd.net';
+    $mail->Host = 'luxewd.net';
     $mail->SMTPAuth = true;
     $mail->Username = 'info@luxewd.net';
     $mail->Password = 'Luxewd@12345';
-    $mail->SMTPSecure = 'tls';
-    $mail->Port = 587;
+    $mail->SMTPSecure = 'ssl';
+    $mail->Port = 465;
 
     // استقبال بيانات النموذج
     $name = $_POST['name'];
@@ -82,7 +82,13 @@ try {
 
     // إرسال البريد
     $mail->send();
-    echo "<script>alert('شكرًا لك على اقتراحك! سنتواصل معك قريبًا.');</script>";
+    echo "<script>
+    alert('شكرًا لك على اقتراحك! سنتواصل معك قريبًا.');
+    window.location.href = 'index.html'; 
+    </script>";
 } catch (Exception $e) {
-    echo "<script>alert('تعذر إرسال الرسالة. خطأ: {$mail->ErrorInfo}');</script>";
+    echo "<script>
+    alert('تعذر إرسال الرسالة. خطأ: {$mail->ErrorInfo}');
+    window.location.href = 'index.html'; 
+    </script>";
 }
